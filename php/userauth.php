@@ -51,7 +51,7 @@ function resetPassword($email, $password){
     $conn = db();
     if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM students WHERE email='$email'"))>=1){
         //if it does, replace the password with $password given
-        $sql = "UPDATE table students set `password`='$password' where email='$email'";
+        $sql = "UPDATE table students set password='$password' where email='$email'";
         if(mysqli_query($conn, $sql)){
             echo "<script> alert('PASSWORD UPDATE SUCCESSFUL!!')</script>";
         }
