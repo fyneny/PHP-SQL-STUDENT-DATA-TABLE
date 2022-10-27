@@ -31,8 +31,8 @@ function loginUser($email, $password){
     $conn = db();
     $query ="SELECT * FROM students WHERE email='$email' AND password='$password'";
     $result = mysqli_query($conn, $query);
-    if(mysql_num_rows($result) >= 1){
-        session_start();
+    if(mysqli_num_rows($result) >= 1){ 
+        session_start(); 
         $_SESSION['username'] =$email;
         header("Location: ../dashboard.php");
         }
@@ -51,15 +51,17 @@ function resetPassword($email, $password){
     $conn = db();
     if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM students WHERE email='$email'"))>=1){
         //if it does, replace the password with $password given
-        $sql ="UPDATE table students set password='$password' where email='$email'";
-        if(mysqli_query($conn,$sql)){
+        $sql = "UPDATE table students set `password`='$password' where email='$email'";
+        if(mysqli_query($conn, $sql)){
             echo "<script> alert('PASSWORD UPDATE SUCCESSFUL!!')</script>";
         }
         else{
-            echo "<h1 style='color: red'>RESET YOUR PASSWORD (IMPLEMENT ME)</h1>";
+            echo "<h1 style='color: red'>USER DOES NOT EXIST</h1>";
         }
     }
-    
+    else{
+        echo "An error has Occured";
+    }
     //open connection to the database and check if username exist in the database
     
 }
